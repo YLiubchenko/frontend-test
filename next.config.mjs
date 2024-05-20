@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    distDir: 'build',
-    webpack: (config) => {
-        return config;
-    },
-};
+const nextConfig = {};
 
 export default nextConfig;
