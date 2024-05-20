@@ -1,5 +1,10 @@
 import styles from "./page.module.css";
-import Formula from "@/components/Formula/views/Formula";
+import dynamic from "next/dynamic";
+
+const Formula = dynamic(
+    () => import('@/components/Formula/views/Formula'),
+    { ssr: false }
+)
 
 export default function Home() {
 

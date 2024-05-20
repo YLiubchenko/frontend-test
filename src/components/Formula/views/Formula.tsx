@@ -21,7 +21,7 @@ const Formula = () => {
     const [suggestions, setSuggestions] = useState<ITagItem[]>([]);
     const [value, setValue] = useState('');
     const [inputValue, setInputValue] = useState('');
-    const wrapper = useRef()
+    const wrapper = useRef(null)
 
     const editorRef = useRef(null);
 
@@ -38,7 +38,7 @@ const Formula = () => {
         }
     }, [tags]);
 
-    const handleCursorActivity = (editor) => {
+    const handleCursorActivity = (editor: any) => {
         const cursor = editor.getCursor();
         const token = editor.getTokenAt(cursor);
         const word = token.string.trim();
@@ -51,7 +51,9 @@ const Formula = () => {
 
     const editorWillUnmount = () => {
         if (editorRef.current && wrapper.current) {
+            // @ts-ignore
             editorRef.current.display.wrapper.remove();
+            // @ts-ignore
             wrapper.current.hydrated = false;
         }
     }
@@ -72,6 +74,7 @@ const Formula = () => {
                     onChange={(editor, data, value) => {
                         setValue(value);
                     }}
+                    // @ts-ignore
                     ref={wrapper}
                     editorDidMount={(editor) => {
                         editorRef.current = editor;
